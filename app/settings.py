@@ -96,7 +96,7 @@ DATABASES = {
         'HOST': 'db-chatdjango.mysql.database.azure.com',
         'PORT': '3306',
         'OPTIONS': {
-            'sslmode': 'verify-full',
+            'sslmode': 'require',
             'sslrootcert': CERTIFICATE_PATH,
         },
     }
