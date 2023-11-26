@@ -78,6 +78,11 @@ WSGI_APPLICATION = 'app.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+import os
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+CERTIFICATE_PATH = os.path.join(BASE_DIR, '..', 'DigiCertGlobalRootCA.crt')
+
 DATABASES = {
     # 'default': {
     #     'ENGINE': 'django.db.backends.sqlite3',
@@ -85,12 +90,15 @@ DATABASES = {
     # }
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'db_chat',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': 'localhost',  # Use 'localhost' if the database is on the same server
-        'PORT': '3306',  # Use the default MySQL port (usually 3306)
-        
+        'NAME': 'chat',
+        'USER': 'evans',
+        'PASSWORD': 'Admin_12345',
+        'HOST': 'db-chatdjango.mysql.database.azure.com',
+        'PORT': '3306',
+        'OPTIONS': {
+            'sslmode': 'verify-full',
+            'sslrootcert': CERTIFICATE_PATH,
+        },
     }
 }
 
