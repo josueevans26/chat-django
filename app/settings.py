@@ -78,11 +78,6 @@ WSGI_APPLICATION = 'app.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-import os
-
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-CERTIFICATE_PATH = os.path.join(BASE_DIR, '..', 'DigiCertGlobalRootCA.crt')
-
 DATABASES = {
     # 'default': {
     #     'ENGINE': 'django.db.backends.sqlite3',
@@ -96,8 +91,7 @@ DATABASES = {
         'HOST': 'db-chatdjango.mysql.database.azure.com',
         'PORT': '3306',
         'OPTIONS': {
-            'sslmode': 'require',
-            'sslrootcert': CERTIFICATE_PATH,
+            'ssl': {'ca': '../DigiCertGlobalRootCA.crt.pem'},
         },
     }
 }
